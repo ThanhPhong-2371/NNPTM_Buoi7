@@ -200,7 +200,7 @@ let orderModel = require('../schemas/orders');
 
 
 
-// pay for a reservation -> post pay/:id
+
 router.post('/pay/:id', checkLogin, async function (req, res, next) {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -257,7 +257,7 @@ router.post('/pay/:id', checkLogin, async function (req, res, next) {
     }
 });
 
-// Background Job: Quét và xử lý đơn hàng hết hạn mỗi 1 phút
+
 setInterval(async () => {
     const session = await mongoose.startSession();
     try {
@@ -292,7 +292,7 @@ setInterval(async () => {
     }
 }, 60000);
 
-// Background Job: Quét và xử lý đơn hàng hết hạn mỗi 1 phút
+
 setInterval(async () => {
     const session = await mongoose.startSession();
     try {
@@ -327,6 +327,6 @@ setInterval(async () => {
     } finally {
         session.endSession();
     }
-}, 60000); // 60000ms = 1 phút quét 1 lần
+}, 60000); 
 
 module.exports = router;
